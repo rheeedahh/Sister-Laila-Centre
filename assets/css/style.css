@@ -1,0 +1,678 @@
+/* ==========================================================================
+   Sister Laila Centre — Design System
+   Palette:  navy #16273F · crimson #A6192E · gold #C9972B · cream #F6F1E4
+   Type:     Fraunces (display) · Work Sans (body) · IBM Plex Mono (ledger/utility)
+   Signature: the woven stripe rule — a nod to kente cloth, used as a section
+   mark and a literal "thread" that runs from girl to community.
+   ========================================================================== */
+
+:root {
+  --navy: #16273F;
+  --navy-soft: #1F3555;
+  --crimson: #A6192E;
+  --crimson-soft: #C13B4E;
+  --gold: #C9972B;
+  --gold-soft: #E4C078;
+  --cream: #F6F1E4;
+  --paper: #FFFDF8;
+  --ink: #23201B;
+  --ink-soft: #55503F;
+  --line: rgba(35, 32, 27, 0.14);
+
+  --display: "Fraunces", "Iowan Old Style", Georgia, serif;
+  --body: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "Courier New", monospace;
+
+  --max: 1120px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  color: var(--ink);
+  background: var(--cream);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; }
+
+h1, h2, h3, h4 {
+  font-family: var(--display);
+  color: var(--navy);
+  line-height: 1.1;
+  margin: 0 0 0.5em;
+  font-weight: 600;
+}
+
+h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
+h2 { font-size: clamp(1.8rem, 3.4vw, 2.6rem); }
+h3 { font-size: 1.35rem; }
+
+p { margin: 0 0 1em; }
+
+.eyebrow {
+  font-family: var(--mono);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 0.72rem;
+  color: var(--gold-soft);
+  font-weight: 600;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* Reduced motion -------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+}
+
+/* Focus visibility -------------------------------------------------------*/
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 2px;
+}
+
+/* Woven stripe rule — the signature element ------------------------------
+   A tri-colour repeating stripe, styled like a woven thread. Used as a
+   divider between sections and echoed in the footer. */
+.stripe-rule {
+  height: 8px;
+  width: 100%;
+  background: repeating-linear-gradient(
+    115deg,
+    var(--navy) 0px, var(--navy) 10px,
+    var(--gold) 10px, var(--gold) 16px,
+    var(--crimson) 16px, var(--crimson) 26px,
+    var(--paper) 26px, var(--paper) 30px
+  );
+}
+
+/* ==========================================================================
+   Header / Nav
+   ========================================================================== */
+.site-header {
+  background: var(--navy);
+  color: var(--paper);
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  border-bottom: 3px solid var(--gold);
+}
+
+.site-header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  gap: 20px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--paper);
+}
+
+.brand img {
+  height: 52px;
+  width: 52px;
+  object-fit: contain;
+  background: var(--paper);
+  border-radius: 50%;
+  padding: 4px;
+  border: 2px solid var(--gold);
+}
+
+.brand-text { line-height: 1.2; }
+
+.brand-text .name {
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  letter-spacing: 0.02em;
+}
+
+.brand-text .tag {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  color: var(--gold-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.main-nav a {
+  text-decoration: none;
+  color: var(--paper);
+  font-size: 0.92rem;
+  padding: 10px 14px;
+  border-radius: 4px;
+  position: relative;
+}
+
+.main-nav a:hover { color: var(--gold-soft); }
+
+.main-nav a.active { color: var(--gold); }
+
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 4px;
+  height: 2px;
+  background: var(--gold);
+}
+
+.nav-cta {
+  background: var(--crimson);
+  color: var(--paper) !important;
+  padding: 10px 18px !important;
+  border-radius: 999px;
+  margin-left: 6px;
+  font-weight: 600;
+}
+.nav-cta:hover { background: var(--crimson-soft); color: var(--paper) !important; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: 1px solid var(--gold);
+  color: var(--paper);
+  border-radius: 6px;
+  padding: 8px 10px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+@media (max-width: 860px) {
+  .nav-toggle { display: inline-block; }
+  .main-nav {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-soft);
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 20px 20px;
+    display: none;
+    border-bottom: 3px solid var(--gold);
+  }
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px 6px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .nav-cta { margin: 8px 0 0; text-align: center; }
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+.hero {
+  background: var(--navy);
+  color: var(--paper);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero .wrap {
+  padding-top: 76px;
+  padding-bottom: 76px;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.hero h1 { color: var(--paper); }
+
+.hero .tagline {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--gold-soft);
+  font-size: 1.3rem;
+  margin-bottom: 18px;
+}
+
+.hero p.lede {
+  color: rgba(255,255,255,0.82);
+  font-size: 1.08rem;
+  max-width: 46ch;
+}
+
+.hero-ctas { display: flex; gap: 14px; margin-top: 28px; flex-wrap: wrap; }
+
+.btn {
+  display: inline-block;
+  font-family: var(--body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 24px;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+.btn:hover { transform: translateY(-1px); }
+
+.btn-primary { background: var(--crimson); color: var(--paper); }
+.btn-primary:hover { background: var(--crimson-soft); }
+
+.btn-ghost { background: transparent; color: var(--paper); border-color: rgba(255,255,255,0.5); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold-soft); }
+
+.btn-gold { background: var(--gold); color: var(--navy); }
+.btn-gold:hover { background: var(--gold-soft); }
+
+/* Hero crest panel */
+.hero-crest {
+  background: var(--paper);
+  border-radius: 16px;
+  padding: 34px 28px;
+  text-align: center;
+  border: 3px solid var(--gold);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+.hero-crest img { width: 132px; margin: 0 auto 14px; }
+.hero-crest .motto {
+  font-family: var(--display);
+  font-style: italic;
+  color: var(--navy);
+  font-size: 1.05rem;
+}
+.hero-crest .est {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-top: 10px;
+}
+
+@media (max-width: 860px) {
+  .hero .wrap { grid-template-columns: 1fr; padding-top: 44px; padding-bottom: 44px; }
+  .hero-crest { max-width: 280px; margin: 0 auto; }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+section { padding: 76px 0; }
+section.tight { padding: 52px 0; }
+.bg-paper { background: var(--paper); }
+.bg-cream { background: var(--cream); }
+.bg-navy { background: var(--navy); color: var(--paper); }
+.bg-navy h2, .bg-navy h3 { color: var(--paper); }
+
+.section-head { max-width: 60ch; margin-bottom: 44px; }
+.section-head p { color: var(--ink-soft); font-size: 1.05rem; }
+
+/* Ledger stat row --------------------------------------------------------
+   Numbers styled like marks in a school register: a running tally. */
+.ledger {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: var(--line);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.ledger .cell {
+  background: var(--paper);
+  padding: 26px 20px;
+  text-align: center;
+}
+
+.ledger .num {
+  font-family: var(--mono);
+  font-size: 2.1rem;
+  font-weight: 600;
+  color: var(--crimson);
+}
+
+.ledger .label {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin-top: 6px;
+}
+
+.ledger-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-top: 12px;
+  text-align: right;
+}
+
+@media (max-width: 700px) {
+  .ledger { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Card grid ---------------------------------------------------------------*/
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 26px; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 26px; }
+.grid-2-center { align-items: center; }
+
+@media (max-width: 860px) {
+  .grid-3 { grid-template-columns: 1fr; }
+  .grid-2 { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 30px 26px;
+  position: relative;
+}
+
+.card .mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--gold);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+}
+
+.card p { color: var(--ink-soft); font-size: 0.97rem; }
+
+.card a.card-link {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--crimson);
+  text-decoration: none;
+  border-bottom: 1px solid var(--crimson);
+}
+
+/* Memory photo (in-content image, e.g. "In Loving Memory" section) ------ */
+.memory-photo {
+  aspect-ratio: 4/3;
+  max-width: 440px;
+  margin: 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.memory-photo img { width: 100%; height: 100%; object-fit: cover; }
+
+/* Quote block ---------------------------------------------------------- */
+.quote-block {
+  max-width: 760px;
+  margin: 0 auto;
+  text-align: center;
+}
+.quote-block blockquote {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 1.9rem);
+  color: var(--navy);
+  margin: 0 0 16px;
+}
+.quote-block cite {
+  font-family: var(--mono);
+  font-style: normal;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+}
+
+/* CTA banner ------------------------------------------------------------ */
+.cta-banner {
+  background: var(--crimson);
+  color: var(--paper);
+  border-radius: 16px;
+  padding: 48px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.cta-banner h2 { color: var(--paper); margin-bottom: 6px; }
+.cta-banner p { color: rgba(255,255,255,0.86); margin: 0; }
+
+/* ==========================================================================
+   Page header (interior pages)
+   ========================================================================== */
+.page-header {
+  background: var(--navy);
+  color: var(--paper);
+  padding: 56px 0 44px;
+}
+.page-header h1 { color: var(--paper); margin-bottom: 10px; }
+.page-header p { color: rgba(255,255,255,0.8); max-width: 60ch; }
+.breadcrumb {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--gold-soft);
+  margin-bottom: 14px;
+}
+
+/* ==========================================================================
+   Gallery
+   ========================================================================== */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+@media (max-width: 860px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 560px) { .gallery-grid { grid-template-columns: 1fr; } }
+
+.gallery-item {
+  aspect-ratio: 4/3;
+  border-radius: 10px;
+  border: 1px dashed var(--ink-soft);
+  background: repeating-linear-gradient(135deg, #EFE9D8, #EFE9D8 10px, #E6DEC7 10px, #E6DEC7 20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  color: var(--ink-soft);
+  padding: 16px;
+}
+.gallery-item .icon { font-size: 1.8rem; margin-bottom: 8px; color: var(--crimson); }
+.gallery-item .cap { font-family: var(--mono); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; }
+
+/* ==========================================================================
+   Forms (Contact / Get Involved)
+   ========================================================================== */
+.form-panel {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 34px;
+}
+.field { margin-bottom: 18px; }
+.field label {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 6px;
+}
+.field input, .field textarea, .field select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--body);
+  font-size: 0.95rem;
+  background: var(--cream);
+  color: var(--ink);
+}
+.field textarea { resize: vertical; min-height: 120px; }
+
+.form-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  margin-top: 10px;
+}
+
+.info-list { list-style: none; margin: 0; padding: 0; }
+.info-list li {
+  display: flex;
+  gap: 14px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--line);
+}
+.info-list .k {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--crimson);
+  width: 130px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+.info-list .v { color: var(--ink); }
+.info-list .v a { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); }
+
+/* Donation ways */
+.give-way {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 24px;
+  background: var(--paper);
+}
+.give-way .eyebrow { display: block; margin-bottom: 8px; }
+.give-way .amt {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  color: var(--navy);
+  background: var(--cream);
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  background: var(--navy);
+  color: rgba(255,255,255,0.78);
+}
+.footer-main {
+  padding: 54px 0 34px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 40px;
+}
+@media (max-width: 760px) { .footer-main { grid-template-columns: 1fr; } }
+
+.footer-brand { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.footer-brand img { height: 44px; width: 44px; background: var(--paper); border-radius: 50%; padding: 3px; }
+.footer-brand .name { font-family: var(--display); color: var(--paper); font-size: 1rem; }
+
+.site-footer h4 {
+  color: var(--gold-soft);
+  font-family: var(--mono);
+  text-transform: uppercase;
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  margin-bottom: 14px;
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; }
+.site-footer li { margin-bottom: 10px; font-size: 0.9rem; }
+.site-footer a { text-decoration: none; color: rgba(255,255,255,0.78); }
+.site-footer a:hover { color: var(--gold-soft); }
+
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.14);
+  padding: 18px 0 26px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.55);
+}
+
+/* ==========================================================================
+   Small utilities (added when building out interior pages)
+   ========================================================================== */
+.muted { color: var(--ink-soft); }
+
+.quote-line { color: var(--ink-soft); font-style: italic; }
+
+.inline-link { color: var(--navy); text-decoration: underline; text-decoration-color: var(--gold); }
+
+.mt-lg { margin-top: 24px; }
+
+.memory-photo--portrait { aspect-ratio: 4/5; max-width: 380px; }
+
+.form-panel--narrow { max-width: 640px; margin: 0 auto; }
+
+.map-placeholder { margin-top: 26px; aspect-ratio: 16/9; }
+
+.ledger-note--left { text-align: left; margin-top: 20px; }
+/* Gallery photo (real event photos, replacing placeholder .gallery-item) --- */
+.gallery-photo {
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid var(--line);
+}
+.gallery-photo img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+.gallery-photo .cap {
+  display: block;
+  padding: 10px 14px;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+}
+.gallery-photo video {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+}
